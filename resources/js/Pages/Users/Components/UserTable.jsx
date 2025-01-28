@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import { useRef } from 'react';
 import DataTable from 'datatables.net-react';
 import DT from 'datatables.net-dt';
-
+import 'datatables.net-dt/css/dataTables.dataTables.min.css';
+import '../../../../css/datatable.css';
+import esES  from '../../../../lenguaje/datatable-español.json';
 
 DataTable.use(DT);
 
 function UserTable() {
+    const table = useRef();
     const columns = [
         { data: 'name', title: 'Nombre', className: 'text-center font-medium text-white'},
         { data: 'email', title: 'Correo', className: 'text-center font-medium text-white' },
@@ -17,12 +21,14 @@ function UserTable() {
             ajax={route('datatable.users')}
             className="display table table-auto table-bordered table-striped w-full table-hover hover"
             columns={columns}
-            order={[
-                [0, 'asc'], // Ordenar por la primera columna (name) en ascendente
-            ]}
-            language={{
-                url: 'https://cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json',
+            options={{
+                responsive: true,
+                select: true,
+                order:[2, 'asc'] , // Ordenar por la primera columna (name) en ascendente
+                language:esES,
             }}
+
+            ref={table}
         >
             <thead>
                 <tr>
