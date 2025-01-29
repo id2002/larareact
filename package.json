@@ -26,6 +26,7 @@
         "datatables.net-dt": "^2.2.1",
         "datatables.net-fixedheader-dt": "^4.0.1",
         "datatables.net-react": "^1.0.0",
-        "datatables.net-select-dt": "^3.0.0"
+        "datatables.net-select-dt": "^3.0.0",
+        "react-select": "^5.10.0"
     }
 }
