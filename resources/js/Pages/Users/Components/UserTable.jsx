@@ -4,7 +4,7 @@ import DataTable from 'datatables.net-react';
 import DT from 'datatables.net-dt';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 import '../../../../css/datatable.css';
-import esES  from '../../../../lenguaje/datatable-español.json';
+import lenguaje  from '../../../../lenguaje/datatable-español.json';
 
 DataTable.use(DT);
 
@@ -25,7 +25,7 @@ function UserTable() {
                 responsive: true,
                 select: true,
                 order:[2, 'asc'] , // Ordenar por la primera columna (name) en ascendente
-                language:esES,
+                language:lenguaje,
             }}
 
             ref={table}

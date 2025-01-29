@@ -10,40 +10,71 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'gender',
+        'status',
+        'type_document'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public static function genders($key = null)
+    {
+        $types = [
+            1 => __('Man'),
+            2 => __('Woman'),
+            3 => __('Nonbinary'),
+            4 => __('No Preference'),
+        ];
+
+        if (!array_key_exists($key, $types)) {
+            $key = null;
+        }
+        return  $key != null ? $types[$key] : $types ;
+    }
+
+    public static function typeDocument($key = null)
+    {
+        $types = [
+            0 => __('NIT'),
+            1 => __('CF'),
+            2 => __('Passport'),
+        ];
+
+        if (!array_key_exists($key, $types)) {
+            $key = null;
+        }
+
+        return $key !== null ? $types[$key] : $types;
+    }
+
+    public static function status($key = null)
+    {
+        $types = [
+            2 => __('Active'),
+            1 => __('Inactive'),
+        ];
+
+        if (!array_key_exists($key, $types)) {
+            $key = null;
+        }
+
+        return $key !== null ? $types[$key] : $types;
     }
 }
